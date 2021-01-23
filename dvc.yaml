@@ -1,0 +1,23 @@
+stages:
+  select:
+    cmd: python3 src/feature_selection.py Depot/data/raw/CNC_Milling_dataset/experiment*.csv
+    deps:
+      - Depot/data/raw/CNC_Milling_dataset
+      - src/feature_selection.py
+    outs:
+      - Depot/data/selected
+    params:
+      - select.features
+
+  transform:
+    cmd: python3 src/data_transformation.py Depot/data/selected/*.csv
+    deps:
+      - Depot/data/selected
+      - src/data_transformation.py
+    outs:
+      - Depot/data/transformed
+    params:
+      - transform.add-noise.features
+      - transform.add-noise.frac
+      - transform.add-noise.label
+

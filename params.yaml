@@ -3,7 +3,7 @@
 select:
   features:
     - X1_ActualPosition
-    - X1_CommandPosition
+
 
 transform:
   add-noise:
@@ -17,9 +17,10 @@ transform:
 split:
   train_split: 0.6
 scale:
+  method: minmax
 
 sequentialize:
-  # History window size in deciseconds
+  # History window size in milliseconds
   hist_size: 100
   # Use only every nth element
   use_elements: 1
@@ -30,8 +31,8 @@ sequentialize:
 train:
   net: cnn
   n_epochs: 100
-  batch_size: 500 #128
-  kernel_size: 5 #4
+  batch_size: 128
+  kernel_size: 4
 
 evaluate:
 

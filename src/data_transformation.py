@@ -2,15 +2,14 @@
 # @Author: Gutama Ibrahim
 # @Date:   2021-01-22 10:17:36
 # @Last Modified by:   Gutama Ibrahim
-# @Last Modified time: 2021-01-23 12:22:50
+# @Last Modified time: 2021-01-26 17:55:32
 import pandas as pd
 import numpy as np
 import yaml
 
 import sys
 import os
-from constants import DATA_TRANSFORMED_PATH
-sys.path.insert(1, "../TimeSerieDataRepairSystem/src")
+from config import DATA_TRANSFORMED_PATH, DATA_PATH
 from preprocess_utils import read_csv, move_column
 
 
@@ -60,6 +59,8 @@ def add_noise(filepaths):
             DATA_TRANSFORMED_PATH
             / (os.path.basename(filepath).replace("selected", "transformed"))
         )
+    pd.DataFrame(df_transformed.columns).to_csv(
+        DATA_PATH / "input_columns.csv")
 
 
 if __name__ == '__main__':

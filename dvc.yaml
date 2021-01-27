@@ -20,4 +20,67 @@ stages:
       - transform.add-noise.features
       - transform.add-noise.frac
       - transform.add-noise.label
+  split:
+    cmd: python3 src/split.py Depot/data/transformed/*.csv
+    deps:
+    - Depot/data/transformed
+    - src/split.py
+    outs:
+    - Depot/data/split
+    params:
+    - split.train_split
+
+  scale:
+    cmd: python3 src/scale.py Depot/data/split/*.csv
+    deps:
+    - Depot/data/split
+    - src/scale.py
+    outs:
+    - Depot/data/scaled
+    params:
+    - scale.method
+
+  sequentialize:
+    cmd: python3 src/sequentialize.py Depot/data/scaled/*.npz
+    deps:
+    - Depot/data/scaled
+    - src/sequentialize.py
+    outs:
+    - Depot/data/sequentialized
+    params:
+    - sequentialize.hist_size
+    - sequentialize.use_elements
+    - sequentialize.target_mean_window
+
+  combine:
+    cmd: python3 src/combine.py Depot/data/sequentialized/*.npz
+    deps:
+    - Depot/data/sequentialized
+    - src/combine.py
+    outs:
+    - Depot/data/combined
+
+  train:
+    cmd: python3 src/train.py Depot/data/combined/train.npz
+    deps:
+    - Depot/data/combined
+    - src/train.py
+    - src/model.py
+    outs:
+    - Depot/models
+    params:
+    - train.net
+    - train.n_epochs
+    - train.batch_size
+    - train.kernel_size
+
+  evaluate:
+    cmd: python3 src/evaluate.py Depot/models/model.h5 Depot/data/combined/test.npz
+    deps:
+    - Depot/data/combined/test.npz
+    - Depot/models/model.h5
+    - src/evaluate.py
+    metrics:
+    - Depot/metrics/metrics.json:
+        cache: false
 

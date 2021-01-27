@@ -23,11 +23,14 @@ def feature_selector(filepaths):
     parameters:
         filepaths: list of strings containing path to datasets
     """
+    #create folder
+    DATA_SELECTED_PATH.mkdir(parents=True, exist_ok=True)
+
     # Load parameters
     params = yaml.safe_load(open("params.yaml"))["select"]
 
     features = params["features"]
-    DATA_SELECTED_PATH.mkdir(parents=True, exist_ok=True)
+
     for filepath in filepaths:
         print("Processing {}".format(filepath))
         # READ RAW DATA

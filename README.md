@@ -40,7 +40,7 @@ Selects all features spesified in params.yaml/select/features into a new datafra
 
 ### Transform
 
-Add noise to dataset add put the label in the first row of the dataset. The name of the label should be spesified in the params.yaml/transform/label.
+Add noise to dataset add put the label in the first column of the dataset. The name of the label should be spesified in the params.yaml/transform/label.
 
 ### Split
 

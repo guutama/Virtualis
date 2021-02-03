@@ -26,6 +26,11 @@ Stages:
 
 1. **Select**: Selects usefule features of raw data into a new dataframes.
 2. **Transform**: Transforms dataset (at the moment add zeros).
+. **Split**: Split data set into training and test data.
+5. **Scale**: Scale input data.
+3. **Sequentialize**: Split data into input/output sequences.
+6. **Train**: Train model.
+7. **Evaluate**: Evaluate model.
 
 
 

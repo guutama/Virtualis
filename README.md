@@ -47,3 +47,9 @@ To run/reproduce an experiment with any given parameters specified in
 ```
 dvc repro
 ```
+### Change dataset
+
+To run experiments with another dataset, just change the content of
+`Depot/data/raw/` to the files you want to use.
+
+

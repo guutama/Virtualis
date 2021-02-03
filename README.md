@@ -33,6 +33,29 @@ Stages:
 7. **Evaluate**: Evaluate model.
 
 
+### Select
+Selects all features spesified in params.yaml/select/features into a new dataframe.  Only a single featur supported at the moment.
+
+
+
+### Transform
+
+Add noise to dataset add put the label in the first row of the dataset. The name of the label should be spesified in the params.yaml/transform/label.
+
+### Split
+
+This stage splits the data set into a training and test set.
+
+### Scale
+
+In this stage the data is scaled.
+
+### Sequentialize
+
+In this stage the data is divided into sequences based on a chosen history
+size.
+
+
 
 ## Usage
 

@@ -50,6 +50,6 @@ dvc repro
 ### Change dataset
 
 To run experiments with another dataset, just change the content of
-`Depot/data/raw/` to the files you want to use.
+`Depot/data/raw/CNC_Milling_dataset` to the files you want to use.
 
 
